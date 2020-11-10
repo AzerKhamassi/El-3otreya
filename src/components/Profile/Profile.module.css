@@ -1,0 +1,49 @@
+.Container {
+  border-radius: 25px;
+  border: 2px rgb(196, 196, 196) solid;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.Photo {
+  position: relative;
+}
+.Photo:before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0);
+}
+.Photo:hover::before {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.Photo button {
+  position: absolute;
+  top: 80%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  display: none;
+}
+.Photo:hover button {
+  display: block;
+}
+
+.Row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 45px 0 0px;
+  /* background-color: rebeccapurple; */
+}
+.Col {
+  border: 2px rgb(196, 196, 196) solid;
+  border-radius: 15px;
+}

@@ -1,0 +1,24 @@
+.Container {
+  padding: 80px 15px;
+}
+
+.Row {
+  border-radius: 6px;
+  display: flex;
+  flex-wrap: wrap;
+  /* justify-content: center; */
+  border: 2px solid gray;
+  margin: 0 5px;
+  background-color: rgba(255, 255, 255, 0.123);
+  border-radius: 6px;
+  border: 2px solid rgba(161, 161, 161, 0.24);
+  padding: 10px;
+}
+.Skeleton {
+  margin: 20px 10px;
+}
+@media (min-width: 768px) {
+  .Skeleton {
+    margin: 20px 25px;
+  }
+}
