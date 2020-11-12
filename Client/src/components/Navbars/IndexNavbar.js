@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 // reactstrap components
 import {
-  Collapse,
   DropdownToggle,
   DropdownMenu,
   DropdownItem,
@@ -33,15 +32,6 @@ const IndexNavbar = () => {
   React.useEffect(() => {});
   return (
     <>
-      {collapseOpen ? (
-        <div
-        // id='bodyClick'
-        // onClick={() => {
-        //   document.documentElement.classList.toggle('nav-open');
-        //   setCollapseOpen(false);
-        // }}
-        />
-      ) : null}
       <Navbar
         className='fixed-top '
         expand='lg'
@@ -52,13 +42,13 @@ const IndexNavbar = () => {
             : 'inset rgba(0, 0, 0, 0.1) 0px 2px 0px, inset rgba(0, 0, 0, 0.04) 0px 0px 0px 2px, rgba(255, 255, 255, 0.25) 0px 2px 10px',
         }}
       >
-        <Container>
+        <Container className={classes.Container}>
           <div className='navbar-translate'>
             <NavbarBrand tag={Link} to='/' style={{ cursor: 'pointer' }}>
               El 3oTreya
             </NavbarBrand>
             <button
-              className='navbar-toggler navbar-toggler'
+              className='navbar-toggler navbar-toggler '
               onClick={() => {
                 // document.documentElement.classList.toggle('nav-open');
                 setCollapseOpen(!collapseOpen);
@@ -72,20 +62,25 @@ const IndexNavbar = () => {
             </button>
           </div>
 
-          <Nav navbar>
+          <Nav
+            navbar
+            className={
+              collapseOpen ? classes.NavbarActive : classes.NavbarCollapsed
+            }
+          >
             {token ? (
               <React.Fragment>
                 <NavItem>
                   <NavLink tag={Link} to='/basket'>
                     <i className='now-ui-icons shopping_cart-simple'></i>
-                    <p className={classes.P}>{itemsCount}</p>
+                    <p className={'text-center ' + classes.P}>{itemsCount}</p>
                     <span>{totalPrice.toPrecision(3)} TND</span>
                   </NavLink>
                 </NavItem>
                 <NavItem>
                   <NavLink style={{ cursor: 'pointer' }}>
                     <i className='now-ui-icons shopping_box'></i>
-                    <p>Ordres</p>
+                    <p className=' pl-3 text-center'>Ordres</p>
                   </NavLink>
                 </NavItem>
                 <UncontrolledDropdown nav>
@@ -96,10 +91,14 @@ const IndexNavbar = () => {
                     onClick={(e) => e.preventDefault()}
                   >
                     <i className='now-ui-icons users_single-02 mr-1'></i>
-                    <p>{user.name}</p>
+                    <p className='text-center pl-2'>{user.name}</p>
                   </DropdownToggle>
                   <DropdownMenu
-                    style={{ backgroundColor: darkMode ? 'white' : 'black' }}
+                    style={{
+                      backgroundColor: darkMode ? 'white' : 'black',
+                      // height: '150px',
+                      overflowY: 'hidden',
+                    }}
                   >
                     <DropdownItem
                       to={`/profile/${user._id}`}
@@ -108,7 +107,7 @@ const IndexNavbar = () => {
                         color: darkMode ? 'black' : 'white',
                       }}
                     >
-                      <i className='now-ui-icons ui-1_settings-gear-63 mr-1'></i>
+                      <i className='now-ui-icons ui-1_settings-gear-63 mr-1 pr-2'></i>
                       Settings
                     </DropdownItem>
                     <DropdownItem
@@ -119,12 +118,12 @@ const IndexNavbar = () => {
                     >
                       {!darkMode ? (
                         <React.Fragment>
-                          <i className={'fa fa-toggle-off'}></i>
+                          <i className='fa fa-toggle-off pr-2'></i>
                           Mode normal
                         </React.Fragment>
                       ) : (
                         <React.Fragment>
-                          <i className={'fa fa-toggle-off'}></i>
+                          <i className='fa fa-toggle-off pr-2'></i>
                           Mode Sombre
                         </React.Fragment>
                       )}
@@ -136,7 +135,7 @@ const IndexNavbar = () => {
                         color: darkMode ? 'black' : 'white',
                       }}
                     >
-                      <i className='now-ui-icons ui-1_lock-circle-open mr-1'></i>
+                      <i className='now-ui-icons ui-1_lock-circle-open mr-1 pr-2'></i>
                       Logout
                     </DropdownItem>
                   </DropdownMenu>

@@ -28,25 +28,29 @@ const Profile = (props) => {
   const [firstFocus, setFirstFocus] = React.useState(false);
 
   React.useEffect(() => {
-    document.body.classList.add('profile-page');
-    document.body.classList.add('sidebar-collapse');
-    document.documentElement.classList.remove('nav-open');
-    window.scrollTo(0, 0);
-    axios
-      .get('/users/' + props.match.params.userId)
-      .then((response) => {
-        setName(response.data.user.name);
-        setEmail(response.data.user.email);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-    document.body.scrollTop = 0;
-    return function cleanup() {
-      document.body.classList.remove('profile-page');
-      document.body.classList.remove('sidebar-collapse');
-    };
-  }, [props]);
+    if (token) {
+      document.body.classList.add('profile-page');
+      document.body.classList.add('sidebar-collapse');
+      document.documentElement.classList.remove('nav-open');
+      window.scrollTo(0, 0);
+      axios
+        .get('/users/' + props.match.params.userId)
+        .then((response) => {
+          setName(response.data.user.name);
+          setEmail(response.data.user.email);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+      document.body.scrollTop = 0;
+      return function cleanup() {
+        document.body.classList.remove('profile-page');
+        document.body.classList.remove('sidebar-collapse');
+      };
+    } else {
+      props.history.replace('/login');
+    }
+  }, [props, token]);
 
   const updateName = () => {
     axios

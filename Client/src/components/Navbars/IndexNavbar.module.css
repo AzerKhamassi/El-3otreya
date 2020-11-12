@@ -10,3 +10,21 @@
   top: -14px;
   right: 8px;
 }
+@media only screen and (max-width: 990px) {
+  .NavbarCollapsed {
+    display: none !important;
+  }
+  .Container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+  }
+  .NavbarActive {
+    padding-top: 8px;
+    display: flex;
+    /* width: 40%; */
+    flex-direction: column;
+    margin: 0 !important;
+  }
+}
