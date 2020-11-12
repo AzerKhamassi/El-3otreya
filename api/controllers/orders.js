@@ -5,7 +5,7 @@ const User = require('../models/User');
 exports.createOrder = async (req, res, next) => {
   try {
     // const product = await Product.findById(req.body.productId);
-    const user = await User.findById(req.body.userId);
+    const user = await User.findById(req.user.userId);
     if (!user) {
       res
         .status(404)
@@ -15,8 +15,10 @@ exports.createOrder = async (req, res, next) => {
       // products = req.body.products;
       let order = new Order({
         // product: req.body.productId,
-        products: req.body.products,
-        user: req.body.userId,
+
+        items: req.body.products,
+        user: req.user.userId,
+        date: new Date().toISOString(),
         // quantity: req.body.quantity,
       });
       order = await order.save();
@@ -36,12 +38,19 @@ exports.createOrder = async (req, res, next) => {
 
 exports.getAllOrders = async (req, res, next) => {
   try {
-    const orders = await Order.find()
-      .populate({ path: 'products', model: 'Product' })
-      // .populate('user', '-__v')
-      .select('-__v');
+    const orders = await Order.find().populate({
+      path: 'items',
+      populate: {
+        path: 'products',
+        model: 'Product',
+      },
+      // model: 'Product',
+    });
+    // .populate('user', '-__v')
+    // .select('-__v');
     res.status(200).json({ orders: orders });
   } catch (error) {
+    console.log(error);
     res.status(500).json({ error: error });
   }
 };

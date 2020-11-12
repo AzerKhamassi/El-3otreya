@@ -2,6 +2,7 @@ import { AppContext } from 'context/AppContext';
 import React, { useContext, useState } from 'react';
 import { Col, Table, Button } from 'reactstrap';
 import classes from './Basket.module.css';
+import axios from '../../axios';
 const Basket = (props) => {
   const {
     purchasedProducts,
@@ -10,6 +11,7 @@ const Basket = (props) => {
     darkMode,
     setItemsCount,
     deleteProduct,
+    token,
   } = useContext(AppContext);
   const [products, setProducts] = useState(purchasedProducts);
 
@@ -35,6 +37,7 @@ const Basket = (props) => {
     setPurchasedProducts(updatedProducts);
     setProducts(updatedProducts);
   };
+
   const substractProductQuantity = (product) => {
     const productIndex = products.findIndex((p) => p._id === product._id);
     let updatedProducts = [...products];
@@ -45,6 +48,26 @@ const Basket = (props) => {
     }
     setPurchasedProducts(updatedProducts);
     setProducts(updatedProducts);
+  };
+
+  const submitOrderHandler = () => {
+    console.log('order');
+    axios
+      .post(
+        '/orders/',
+        {
+          products: products,
+        },
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      )
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   return (
@@ -132,7 +155,9 @@ const Basket = (props) => {
                 </h3>
               </div>
               <div>
-                <Button color='success'>Commander</Button>
+                <Button color='success' onClick={submitOrderHandler}>
+                  Commander
+                </Button>
               </div>
             </div>
           </Col>
