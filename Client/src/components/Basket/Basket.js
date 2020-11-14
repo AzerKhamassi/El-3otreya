@@ -74,7 +74,7 @@ const Basket = (props) => {
     <div className={classes.Container}>
       {products.length ? (
         <React.Fragment>
-          <Col xs='12' md='6'>
+          <Col xs='12' md='6' className='p-0'>
             <Table
               className='m-0 p-0'
               responsive

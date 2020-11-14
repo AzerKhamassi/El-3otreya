@@ -21,42 +21,34 @@ const App = (props) => {
       <AppContextProvider>
         <IndexNavbar />
         <Switch>
-          <Switch>
-            <Route
-              path='/products/:productId'
-              render={(props) => <ProductDetails {...props} />}
-            />
+          <Route
+            path='/products/:productId'
+            render={(props) => <ProductDetails {...props} />}
+          />
 
-            <Route
-              path='/products'
-              render={(props) => <Products {...props} />}
-            />
-            <Route path='/basket' render={(props) => <Basket {...props} />} />
-            <Route path='/orders' render={(props) => <Orders {...props} />} />
+          <Route path='/products' render={(props) => <Products {...props} />} />
+          <Route path='/basket' render={(props) => <Basket {...props} />} />
+          <Route path='/orders' render={(props) => <Orders {...props} />} />
 
-            <Route
-              path='/nucleo-icons'
-              render={(props) => <NucleoIcons {...props} />}
-            />
-            <Route
-              path='/landing-page'
-              render={(props) => <LandingPage {...props} />}
-            />
-            <Route
-              path='/profile/:userId'
-              render={(props) => <Profile {...props} />}
-            />
-            <Route path='/login' render={(props) => <Login {...props} />} />
-            <Route path='/logout' render={(props) => <Logout {...props} />} />
-            <Route
-              path='/register'
-              render={(props) => <Register {...props} />}
-            />
-            <Route path='/index' render={(props) => <Index {...props} />} />
-            <Redirect from='/' to='/products' />
-            <Redirect to='/' />
-            {/* <Redirect from='/' to='/index' /> */}
-          </Switch>
+          <Route
+            path='/nucleo-icons'
+            render={(props) => <NucleoIcons {...props} />}
+          />
+          <Route
+            path='/landing-page'
+            render={(props) => <LandingPage {...props} />}
+          />
+          <Route
+            path='/profile/:userId'
+            render={(props) => <Profile {...props} />}
+          />
+          <Route path='/login' render={(props) => <Login {...props} />} />
+          <Route path='/logout' render={(props) => <Logout {...props} />} />
+          <Route path='/register' render={(props) => <Register {...props} />} />
+          <Route path='/index' render={(props) => <Index {...props} />} />
+          <Redirect from='/' to='/products' />
+          <Redirect to='/' />
+          {/* <Redirect from='/' to='/index' /> */}
         </Switch>
       </AppContextProvider>
     </React.Fragment>

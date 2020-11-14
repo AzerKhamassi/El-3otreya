@@ -179,7 +179,7 @@ const Products = (props) => {
                     </InputGroupText>
                   </InputGroupAddon>
                   <Input
-                    placeholder='Quantité'
+                    // placeholder='Quantité'
                     type='number'
                     step='1'
                     min='1'
