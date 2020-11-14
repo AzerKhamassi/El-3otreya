@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Orders = (props) => {
-  return <div></div>;
+  return <div style={{ paddingTop: '100px' }}>hello from orders </div>;
 };
 
 export default Orders;

@@ -1,27 +1,32 @@
+const Item = require('../models/Item');
 const Order = require('../models/Order');
-const Product = require('../models/Product');
 const User = require('../models/User');
 
 exports.createOrder = async (req, res, next) => {
   try {
-    // const product = await Product.findById(req.body.productId);
     const user = await User.findById(req.user.userId);
     if (!user) {
       res
         .status(404)
         .json({ message: 'The user with the given ID is not found' });
     } else {
-      // const products = [];
-      // products = req.body.products;
+      let items = [];
+      req.body.products.map(async (product) => {
+        let item = new Item({
+          product: product,
+          quantity: product.quantity,
+        });
+        let savedItem = await item.save();
+        // console.log(savedItem);
+        items.push(savedItem);
+      });
+      console.log(items);
       let order = new Order({
-        // product: req.body.productId,
-
-        items: req.body.products,
+        items: items,
         user: req.user.userId,
         date: new Date().toISOString(),
-        // quantity: req.body.quantity,
       });
-      order = await order.save();
+      await order.save();
       res.status(201).json({ order: order });
     }
     // if (!product) {
@@ -38,15 +43,12 @@ exports.createOrder = async (req, res, next) => {
 
 exports.getAllOrders = async (req, res, next) => {
   try {
-    const orders = await Order.find().populate({
-      path: 'items',
-      populate: {
-        path: 'products',
-        model: 'Product',
-      },
-      // model: 'Product',
-    });
-    // .populate('user', '-__v')
+    const orders = await Order.find()
+      // .populate('items')
+      .populate('items.products');
+    // .populate({
+    //   path: 'items.products',
+    // });
     // .select('-__v');
     res.status(200).json({ orders: orders });
   } catch (error) {

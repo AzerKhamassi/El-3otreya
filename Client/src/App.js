@@ -13,6 +13,7 @@ import Basket from 'components/Basket/Basket';
 import ProductDetails from 'components/Products/ProductDetails/ProductDetails';
 import AppContextProvider from 'context/AppContext';
 import Logout from 'components/Logout/Logout';
+import Orders from 'components/Orders/Orders';
 
 const App = (props) => {
   return (
@@ -31,6 +32,7 @@ const App = (props) => {
               render={(props) => <Products {...props} />}
             />
             <Route path='/basket' render={(props) => <Basket {...props} />} />
+            <Route path='/orders' render={(props) => <Orders {...props} />} />
 
             <Route
               path='/nucleo-icons'

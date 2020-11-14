@@ -78,7 +78,11 @@ const IndexNavbar = () => {
                   </NavLink>
                 </NavItem>
                 <NavItem>
-                  <NavLink style={{ cursor: 'pointer' }}>
+                  <NavLink
+                    tag={Link}
+                    style={{ cursor: 'pointer' }}
+                    to='/orders'
+                  >
                     <i className='now-ui-icons shopping_box'></i>
                     <p className=' pl-3 text-center'>Ordres</p>
                   </NavLink>

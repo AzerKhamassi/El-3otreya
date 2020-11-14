@@ -50,7 +50,6 @@ const LoginPage = (props) => {
       .catch((error) => {
         console.log(error);
       });
-    // console.log(email, password);
   };
   return (
     <>
