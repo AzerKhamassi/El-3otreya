@@ -2,7 +2,7 @@ const User = require('../models/User');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
-exports.signupUser = async (req, res, next) => {
+exports.signupUser = async (req, res) => {
   try {
     hashedPassword = await bcrypt.hash(req.body.password, 10);
     let user = await User.findOne({ email: req.body.email });
@@ -23,7 +23,7 @@ exports.signupUser = async (req, res, next) => {
   }
 };
 
-exports.loginUser = async (req, res, next) => {
+exports.loginUser = async (req, res) => {
   try {
     let user = await User.findOne({ email: req.body.email });
     if (!user) {
@@ -51,7 +51,7 @@ exports.loginUser = async (req, res, next) => {
   }
 };
 
-exports.deleteUser = async (req, res, next) => {
+exports.deleteUser = async (req, res) => {
   try {
     const user = await User.findByIdAndRemove(req.params.userId);
     if (!user) {
@@ -69,7 +69,7 @@ exports.getCurrentUser = async (req, res) => {
   res.status(200).json({ user: user });
 };
 
-exports.getUser = async (req, res, next) => {
+exports.getUser = async (req, res) => {
   try {
     const user = await User.findById(req.params.userId);
     if (!user) {
@@ -82,7 +82,7 @@ exports.getUser = async (req, res, next) => {
   }
 };
 
-exports.updateUser = async (req, res, next) => {
+exports.updateUser = async (req, res) => {
   try {
     const updateOps = {};
     for (const ops of req.body) {
@@ -107,7 +107,7 @@ exports.updateUser = async (req, res, next) => {
   }
 };
 
-exports.editPassword = async (req, res, next) => {
+exports.editPassword = async (req, res) => {
   try {
     let user = await User.findById(req.user.userId);
     if (!user) {

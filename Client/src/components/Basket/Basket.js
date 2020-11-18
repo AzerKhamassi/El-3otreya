@@ -55,7 +55,6 @@ const Basket = (props) => {
   };
 
   const submitOrderHandler = () => {
-    console.log('order');
     axios
       .post(
         '/orders/',
@@ -78,11 +77,13 @@ const Basket = (props) => {
     <div className={classes.Container}>
       {products.length ? (
         <React.Fragment>
-          <Col xs='12' md='6' className='p-0'>
+          <Col xs='12' md='6' className={classes.Content}>
             <Table
               className='m-0 p-0'
               responsive
-              style={{ color: darkMode ? 'black' : 'white' }}
+              style={{
+                color: darkMode ? 'black' : 'white',
+              }}
             >
               <thead>
                 <tr>
@@ -156,7 +157,6 @@ const Basket = (props) => {
                 ))}
               </tbody>
             </Table>
-            <hr />
             <div
               style={{
                 display: 'flex',
@@ -190,7 +190,7 @@ const Basket = (props) => {
               className='pt-2'
               style={{ color: darkMode ? 'black' : 'white' }}
             >
-              Votre chariot est vide
+              Your Basket is currently empty
             </h3>
           </div>
         </Col>

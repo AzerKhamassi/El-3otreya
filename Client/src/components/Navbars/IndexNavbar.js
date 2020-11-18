@@ -100,7 +100,7 @@ const IndexNavbar = () => {
                     onClick={(e) => e.preventDefault()}
                   >
                     <i className='now-ui-icons users_single-02 mr-1'></i>
-                    <p className='text-center pl-2'>{user.name}</p>
+                    <p className='text-center pl-2'>{user?.name}</p>
                   </DropdownToggle>
                   <DropdownMenu
                     style={{

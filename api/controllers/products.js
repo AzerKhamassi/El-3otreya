@@ -1,6 +1,6 @@
 const Product = require('../models/Product');
 const User = require('../models/User');
-exports.createProduct = async (req, res, next) => {
+exports.createProduct = async (req, res) => {
   try {
     let product = new Product({
       name: req.body.name,
@@ -15,7 +15,7 @@ exports.createProduct = async (req, res, next) => {
   }
 };
 
-exports.getAllProducts = async (req, res, next) => {
+exports.getAllProducts = async (req, res) => {
   try {
     const products = await Product.find()
       .populate('user', '-__v -password')
@@ -26,7 +26,7 @@ exports.getAllProducts = async (req, res, next) => {
   }
 };
 
-exports.getProduct = async (req, res, next) => {
+exports.getProduct = async (req, res) => {
   try {
     const product = await Product.findById(req.params.productId).select('-__v');
     if (!product) {
@@ -39,7 +39,7 @@ exports.getProduct = async (req, res, next) => {
   }
 };
 
-exports.updateProduct = async (req, res, next) => {
+exports.updateProduct = async (req, res) => {
   try {
     const updateOps = {};
     for (const ops of req.body) {
@@ -62,7 +62,7 @@ exports.updateProduct = async (req, res, next) => {
   }
 };
 
-exports.deleteProduct = async (req, res, next) => {
+exports.deleteProduct = async (req, res) => {
   try {
     const product = await Product.findByIdAndRemove(req.params.productId);
     if (!product) {
