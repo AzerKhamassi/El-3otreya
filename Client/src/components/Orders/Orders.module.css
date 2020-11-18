@@ -1,0 +1,36 @@
+.Image {
+  border: 2px solid rgba(128, 128, 128, 0.63);
+  border-radius: 25px;
+}
+.Content {
+  border: 2px solid rgba(128, 128, 128, 0.63);
+  border-radius: 5px;
+  height: 450px;
+  overflow-y: scroll;
+  padding: 15px 0px;
+  margin: 10px;
+}
+.Row {
+  display: flex;
+  justify-content: space-around;
+  padding: 0 30px;
+}
+/* width */
+.Content::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+.Content::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+.Content::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+.Content::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}

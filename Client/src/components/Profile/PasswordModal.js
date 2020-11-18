@@ -42,7 +42,6 @@ const PasswordModal = (props) => {
           console.log(error);
         });
     }
-    console.log(password, repassword, newPassword);
   };
 
   const closeModal = () => {

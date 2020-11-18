@@ -45,6 +45,11 @@ const IndexNavbar = () => {
         <Container className={classes.Container}>
           <div className='navbar-translate'>
             <NavbarBrand tag={Link} to='/' style={{ cursor: 'pointer' }}>
+              <img
+                src='https://img.icons8.com/nolan/64/e-commerce.png'
+                alt='...'
+                style={{ height: '30px' }}
+              />
               El 3oTreya
             </NavbarBrand>
             <button
@@ -84,7 +89,7 @@ const IndexNavbar = () => {
                     to='/orders'
                   >
                     <i className='now-ui-icons shopping_box'></i>
-                    <p className=' pl-3 text-center'>Ordres</p>
+                    <p className=' pl-3 text-center'>Orders</p>
                   </NavLink>
                 </NavItem>
                 <UncontrolledDropdown nav>
@@ -100,7 +105,7 @@ const IndexNavbar = () => {
                   <DropdownMenu
                     style={{
                       backgroundColor: darkMode ? 'white' : 'black',
-                      // height: '150px',
+                      height: '180px',
                       overflowY: 'hidden',
                     }}
                   >
@@ -111,8 +116,16 @@ const IndexNavbar = () => {
                         color: darkMode ? 'black' : 'white',
                       }}
                     >
-                      <i className='now-ui-icons ui-1_settings-gear-63 mr-1 pr-2'></i>
+                      <i className='now-ui-icons ui-1_settings-gear-63 pr-2'></i>
                       Settings
+                    </DropdownItem>
+                    <DropdownItem
+                      style={{
+                        color: darkMode ? 'black' : 'white',
+                      }}
+                    >
+                      <i className='now-ui-icons design_bullet-list-67 pr-2'></i>
+                      Dashboard
                     </DropdownItem>
                     <DropdownItem
                       onClick={toggleDarkMode}
@@ -123,12 +136,12 @@ const IndexNavbar = () => {
                       {!darkMode ? (
                         <React.Fragment>
                           <i className='fa fa-toggle-off pr-2'></i>
-                          Mode normal
+                          Light Mode
                         </React.Fragment>
                       ) : (
                         <React.Fragment>
                           <i className='fa fa-toggle-off pr-2'></i>
-                          Mode Sombre
+                          Dark Mode
                         </React.Fragment>
                       )}
                     </DropdownItem>
@@ -139,7 +152,7 @@ const IndexNavbar = () => {
                         color: darkMode ? 'black' : 'white',
                       }}
                     >
-                      <i className='now-ui-icons ui-1_lock-circle-open mr-1 pr-2'></i>
+                      <i className='now-ui-icons ui-1_lock-circle-open  pr-2'></i>
                       Logout
                     </DropdownItem>
                   </DropdownMenu>

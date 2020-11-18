@@ -41,7 +41,14 @@ const NewProduct = (props) => {
   };
   return (
     <React.Fragment>
-      <Modal isOpen={props.modal} toggle={() => props.setModal(false)}>
+      <Modal
+        isOpen={props.modal}
+        toggle={() => props.setModal(false)}
+        style={{
+          boxShadow:
+            'inset rgba(0, 0, 0, 0.1) 0px 2px 0px, inset rgba(0, 0, 0, 0.04) 0px 0px 0px 2px, rgba(255, 255, 255, 0.25) 0px 2px 10px',
+        }}
+      >
         <div style={{ backgroundColor: darkMode ? 'white' : 'black' }}>
           <div className='modal-header justify-content-center'>
             <button
@@ -56,7 +63,7 @@ const NewProduct = (props) => {
               className='title title-up'
               style={{ color: darkMode ? 'black' : 'white' }}
             >
-              Entrer les informations du produit
+              Product Info
             </h5>
           </div>
           <ModalBody>
@@ -71,7 +78,7 @@ const NewProduct = (props) => {
                 </InputGroupText>
               </InputGroupAddon>
               <Input
-                placeholder='Nom du Produit'
+                placeholder='Name'
                 type='text'
                 onFocus={() => setFirstFocus(true)}
                 onBlur={() => setFirstFocus(false)}
@@ -90,7 +97,7 @@ const NewProduct = (props) => {
                 </InputGroupText>
               </InputGroupAddon>
               <Input
-                placeholder='Prix'
+                placeholder='Price'
                 type='number'
                 step='0.1'
                 value={price}

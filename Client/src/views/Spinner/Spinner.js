@@ -5,7 +5,7 @@ import classes from './Spinner.module.css';
 const Spinner = (props) => {
   return (
     <div className={classes.Loader}>
-      <Loader type='Puff' color='#f0f2f4' height={100} width={100} />
+      <Loader type='Oval' color='#00BFFF' height={80} width={80} />{' '}
     </div>
   );
 };

@@ -2,21 +2,14 @@ const Product = require('../models/Product');
 const User = require('../models/User');
 exports.createProduct = async (req, res, next) => {
   try {
-    const user = await User.findById(req.user.userId);
-    if (!user) {
-      res
-        .status(404)
-        .json({ message: 'The user with the given ID is not found' });
-    } else {
-      let product = new Product({
-        name: req.body.name,
-        price: req.body.price,
-        user: req.user.userId,
-        // productImage: req.file.path,
-      });
-      product = await product.save();
-      res.status(201).json({ createdProduct: product });
-    }
+    let product = new Product({
+      name: req.body.name,
+      price: req.body.price,
+      user: req.user.userId,
+      // productImage: req.file.path,
+    });
+    product = await product.save();
+    res.status(201).json({ createdProduct: product });
   } catch (error) {
     res.status(500).json({ error: error });
   }

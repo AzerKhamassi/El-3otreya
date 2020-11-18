@@ -18,9 +18,9 @@ exports.createOrder = async (req, res) => {
   }
 };
 
-exports.getAllOrders = async (req, res, next) => {
+exports.getAllOrders = async (req, res) => {
   try {
-    const orders = await Order.find().populate('items.product');
+    const orders = await Order.find().populate('items.product').exec();
     res.status(200).json({ orders: orders });
   } catch (error) {
     console.log(error);
@@ -28,21 +28,22 @@ exports.getAllOrders = async (req, res, next) => {
   }
 };
 
-exports.getOrdersbyUser = async (req, res, next) => {
+exports.getOrdersbyUser = async (req, res) => {
   try {
     const orders = await Order.find({ user: req.user.userId })
-      .populate({ path: 'products', model: 'Product' })
-      .select('-__v');
+      .populate('items.product')
+      .exec();
     res.status(200).json({ orders: orders });
   } catch (error) {
     res.status(500).json({ error: error });
   }
 };
 
-exports.getOrder = async (req, res, next) => {
+exports.getOrder = async (req, res) => {
   try {
     const order = await Order.findById(req.params.orderId)
       .populate('product', 'name')
+      .exec()
       .select('-__v');
     if (!order) {
       res.status(404).send('The order with the given ID is not found');
@@ -54,9 +55,9 @@ exports.getOrder = async (req, res, next) => {
   }
 };
 
-exports.deleteOrder = async (req, res, next) => {
+exports.deleteOrder = async (req, res) => {
   try {
-    const order = await Order.findByIdAndRemove(req.params.orderId);
+    const order = await Order.findByIdAndRemove(req.params.orderId).exec();
     if (!order) {
       res.status(404).send('The order with the given ID is not found');
     } else {

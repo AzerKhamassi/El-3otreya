@@ -31,25 +31,25 @@ const Product = (props) => {
               // color='info'
               style={{ backgroundColor: ' rgba(145, 145, 145, 0.879)' }}
             >
-              <i className='now-ui-icons shopping_cart-simple'></i> Chariot
+              <i className='fa fa-shopping-cart fa-2x'></i>
             </Button>
           ) : (
             <React.Fragment>
               <Button
-                className='btn-round'
+                className='btn-round px-4 py-1'
                 color='info'
                 size='sm'
                 onClick={props.editProduct}
               >
-                Modifier
+                <i className='fa fa-edit fa-2x'></i>
               </Button>
               <Button
-                className='btn-round'
+                className='btn-round px-4 py-1'
                 color='danger'
                 size='sm'
                 onClick={props.deleteProduct}
               >
-                Supprimer
+                <i className='fa fa-times fa-2x'></i>
               </Button>
             </React.Fragment>
           )}

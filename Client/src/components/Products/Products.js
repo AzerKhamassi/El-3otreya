@@ -95,7 +95,7 @@ const Products = (props) => {
               className='btn-round'
               onClick={() => setModal(true)}
             >
-              Ajouter Produit
+              Add Product
             </Button>
             <NewProduct modal={modal} setModal={setModal} />
           </div>
@@ -146,7 +146,7 @@ const Products = (props) => {
                     className='title title-up'
                     style={{ color: darkMode ? 'black' : 'white' }}
                   >
-                    Produit {selectedProduct.name}
+                    Product {selectedProduct.name}
                   </h5>
                 </div>
                 <div className='text-center'>
@@ -154,7 +154,7 @@ const Products = (props) => {
                     className='title title-up p-1'
                     style={{ color: darkMode ? 'black' : 'white' }}
                   >
-                    Prix {selectedProduct.price}
+                    Price {selectedProduct.price}
                   </h5>
                 </div>
               </div>
@@ -163,7 +163,7 @@ const Products = (props) => {
                   className='ml-2'
                   style={{ color: darkMode ? 'black' : 'white' }}
                 >
-                  Quantité
+                  Quantity
                 </Label>
                 <InputGroup
                   className={
@@ -197,14 +197,14 @@ const Products = (props) => {
                   type='button'
                   onClick={purchaseProductHandler}
                 >
-                  Confirmer
+                  Confirm
                 </Button>
                 <Button
                   color='danger'
                   type='button'
                   onClick={cancelPurchaseProduct}
                 >
-                  Fermer
+                  Close
                 </Button>
               </div>
             </div>

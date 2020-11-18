@@ -48,7 +48,7 @@ const AppContextProvider = (props) => {
     } else {
       document.getElementById('root').style.backgroundColor = 'white';
     }
-  });
+  }, [darkMode]);
   const addProduct = (product) => {
     const productIndex = purchasedProducts.findIndex(
       (p) => p._id === product._id

@@ -16,15 +16,19 @@ const Basket = (props) => {
   const [products, setProducts] = useState(purchasedProducts);
 
   React.useEffect(() => {
-    document.body.classList.add('sidebar-collapse');
-    document.documentElement.classList.remove('nav-open');
-    window.scrollTo(0, 0);
-    document.body.scrollTop = 0;
+    if (token) {
+      document.body.classList.add('sidebar-collapse');
+      document.documentElement.classList.remove('nav-open');
+      window.scrollTo(0, 0);
+      document.body.scrollTop = 0;
 
-    return function cleanup() {
-      document.body.classList.remove('sidebar-collapse');
-    };
-  }, []);
+      return function cleanup() {
+        document.body.classList.remove('sidebar-collapse');
+      };
+    } else {
+      props.history.replace('/login');
+    }
+  }, [token, props]);
 
   const addProductQuantity = (product) => {
     const productIndex = products.findIndex((p) => p._id === product._id);
@@ -83,9 +87,10 @@ const Basket = (props) => {
               <thead>
                 <tr>
                   <th>Produit</th>
-                  <th className='text-center'>Prix</th>
-                  <th className='text-center'>Quantité</th>
-                  <th className='text-center'>Retirer</th>
+                  <th className='text-center'>Price</th>
+                  <th className='text-center'>Quantity</th>
+                  <th className='text-center'>Total</th>
+                  <th className='text-center'>Remove</th>
                 </tr>
               </thead>
               <tbody>
@@ -124,6 +129,22 @@ const Basket = (props) => {
                         </span>
                       </div>
                     </td>
+                    <td className='text-center px-0'>
+                      <div style={{ position: 'relative' }}>
+                        <p style={{ fontWeight: 'bold' }}>
+                          {(product.price * product.quantity).toFixed(2)}
+                        </p>
+                        <small
+                          style={{
+                            position: 'relative',
+                            top: '-52px',
+                            right: '-25px',
+                          }}
+                        >
+                          TND
+                        </small>
+                      </div>
+                    </td>
                     <td className='text-center'>
                       <i
                         style={{ cursor: 'pointer' }}
@@ -151,7 +172,7 @@ const Basket = (props) => {
                   className='m-0'
                   style={{ color: darkMode ? 'black' : 'white' }}
                 >
-                  Prix Total {totalPrice.toPrecision(3)} TND
+                  Total Price {totalPrice.toPrecision(3)} TND
                 </h3>
               </div>
               <div>
@@ -167,7 +188,7 @@ const Basket = (props) => {
           <div className={classes.Basket}>
             <h3
               className='pt-2'
-              style={{ color: darkMode ? 'color' : 'white' }}
+              style={{ color: darkMode ? 'black' : 'white' }}
             >
               Votre chariot est vide
             </h3>

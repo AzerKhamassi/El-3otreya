@@ -158,7 +158,7 @@ const ProductDetails = (props) => {
                       <Skeleton height={20} width={100} />
                     ) : (
                       <h6 style={{ color: darkMode ? 'black' : 'white' }}>
-                        produit: {product.name}
+                        Product: {product.name}
                       </h6>
                     )}
                   </Col>
@@ -229,7 +229,7 @@ const ProductDetails = (props) => {
                       <Skeleton height={20} width={100} />
                     ) : (
                       <h6 style={{ color: darkMode ? 'black' : 'white' }}>
-                        produit: {product.price}
+                        Price: {product.price}
                       </h6>
                     )}
                   </Col>
