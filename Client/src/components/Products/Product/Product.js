@@ -2,6 +2,7 @@ import { AppContext } from 'context/AppContext';
 import React from 'react';
 import { Button, Card, CardBody, CardFooter } from 'reactstrap';
 import classes from './Product.module.css';
+
 const Product = (props) => {
   const { user, darkMode } = React.useContext(AppContext);
   return (
@@ -13,7 +14,7 @@ const Product = (props) => {
         {/* <CardHeader className='text-center text-uppercase'></CardHeader> */}
         <CardBody className='text-center py-3'>
           <img
-            className='img-fluid img-raised rounded-circle'
+            className='img-fluid'
             alt='...'
             // style={{ borderRadius: '50%' }}
             src='https://img-0.journaldunet.com/6Vrvxcv3SwHHCnUtaBzMQMYor1I=/1280x/smart/32d90de13a5f411c86709152f70fc67c/ccmcms-jdn/10861192.jpg'

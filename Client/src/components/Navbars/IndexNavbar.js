@@ -105,7 +105,7 @@ const IndexNavbar = () => {
                   <DropdownMenu
                     style={{
                       backgroundColor: darkMode ? 'white' : 'black',
-                      height: '180px',
+                      // height: '180px',
                       overflowY: 'hidden',
                     }}
                   >
@@ -119,14 +119,19 @@ const IndexNavbar = () => {
                       <i className='now-ui-icons ui-1_settings-gear-63 pr-2'></i>
                       Settings
                     </DropdownItem>
-                    <DropdownItem
-                      style={{
-                        color: darkMode ? 'black' : 'white',
-                      }}
-                    >
-                      <i className='now-ui-icons design_bullet-list-67 pr-2'></i>
-                      Dashboard
-                    </DropdownItem>
+                    {user?.isAdmin && (
+                      <DropdownItem
+                        to='/admin'
+                        tag={Link}
+                        style={{
+                          color: darkMode ? 'black' : 'white',
+                        }}
+                      >
+                        <i className='now-ui-icons design_bullet-list-67 pr-2'></i>
+                        Dashboard
+                      </DropdownItem>
+                    )}
+
                     <DropdownItem
                       onClick={toggleDarkMode}
                       style={{

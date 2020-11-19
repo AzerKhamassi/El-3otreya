@@ -13,7 +13,7 @@ exports.signupUser = async (req, res) => {
         name: req.body.name,
         email: req.body.email,
         password: hashedPassword,
-        totalExpenses: req.totalExpenses,
+        isAdmin: req.body.isAdmin,
       });
       user = await user.save();
       res.status(201).json({ userCreated: user });

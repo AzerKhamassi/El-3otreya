@@ -18,6 +18,16 @@ exports.createProduct = async (req, res) => {
 exports.getAllProducts = async (req, res) => {
   try {
     const products = await Product.find()
+      // .populate('user', '-__v -password')
+      .select('-__v');
+    res.status(200).json({ products: products });
+  } catch (error) {
+    res.status(500).json({ error: error });
+  }
+};
+exports.getVisibleProducts = async (req, res) => {
+  try {
+    const products = await Product.find({ visibility: true })
       .populate('user', '-__v -password')
       .select('-__v');
     res.status(200).json({ products: products });

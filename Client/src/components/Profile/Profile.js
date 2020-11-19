@@ -40,13 +40,14 @@ const Profile = (props) => {
         .then((response) => {
           setUserId(response.data.user._id);
           setUserProfile(response.data.user);
-          // console.log(response.data.user._id);
           setName(response.data.user.name);
           setEmail(response.data.user.email);
           setLoading(false);
         })
         .catch((error) => {
-          console.log(error);
+          if (error.response.status === 404) {
+            props.history.replace('/');
+          }
         });
       document.body.scrollTop = 0;
       return function cleanup() {

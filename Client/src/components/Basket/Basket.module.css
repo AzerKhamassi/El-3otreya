@@ -34,7 +34,7 @@
   background-color: rgba(138, 138, 138, 0.37);
 }
 .Content {
-  height: 400px;
+  height: 550px;
   overflow-y: scroll;
   border: 2px solid gray;
   border-radius: 5px;

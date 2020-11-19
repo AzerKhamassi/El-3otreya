@@ -14,6 +14,7 @@ import ProductDetails from 'components/Products/ProductDetails/ProductDetails';
 import AppContextProvider from 'context/AppContext';
 import Logout from 'components/Logout/Logout';
 import Orders from 'components/Orders/Orders';
+import Dashboard from 'components/Dashboard/Dashboard';
 
 const App = (props) => {
   return (
@@ -46,6 +47,8 @@ const App = (props) => {
           <Route path='/logout' render={(props) => <Logout {...props} />} />
           <Route path='/register' render={(props) => <Register {...props} />} />
           <Route path='/index' render={(props) => <Index {...props} />} />
+          <Route path='/admin' render={(props) => <Dashboard {...props} />} />
+
           <Redirect from='/' to='/products' />
           <Redirect to='/' />
           {/* <Redirect from='/' to='/index' /> */}

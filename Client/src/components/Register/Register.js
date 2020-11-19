@@ -24,6 +24,7 @@ const Register = (props) => {
   const [name, setName] = React.useState('');
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
+  const [currentValue, setCurrentValue] = React.useState('Customer');
   const { darkMode } = React.useContext(AppContext);
   React.useEffect(() => {
     document.body.classList.add('sidebar-collapse');
@@ -36,11 +37,13 @@ const Register = (props) => {
   }, []);
 
   const submitHandler = () => {
+    let isAdmin = currentValue === 'Seller';
     axios
       .post('/users/signup', {
         name: name,
         email: email,
         password: password,
+        isAdmin: isAdmin,
       })
       .then((response) => {
         console.log(response);
@@ -124,6 +127,24 @@ const Register = (props) => {
                       onFocus={() => setFirstFocus(true)}
                       onBlur={() => setFirstFocus(false)}
                     ></Input>
+                  </InputGroup>
+
+                  <InputGroup
+                    className={
+                      'no-border input-lg' +
+                      (firstFocus ? ' input-group-focus' : '')
+                    }
+                  >
+                    <Input
+                      type='select'
+                      name='select'
+                      id='exampleSelect'
+                      onChange={(e) => setCurrentValue(e.target.value)}
+                    >
+                      <option disabled>Select Role</option>
+                      <option value='Customer'>Customer</option>
+                      <option value='Seller'>Seller</option>
+                    </Input>
                   </InputGroup>
                 </CardBody>
                 <CardFooter className='text-center'>

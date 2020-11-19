@@ -14,13 +14,11 @@ import {
 import axios from '../../axios';
 import Product from './Product/Product';
 import classes from './Products.module.css';
-import NewProduct from './NewProduct/NewProduct';
 import { AppContext } from 'context/AppContext';
 import Spinner from 'views/Spinner/Spinner';
 
 const Products = (props) => {
   const [products, setProducts] = useState([]);
-  const [modal, setModal] = useState(false);
   const [modal1, setModal1] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState({});
   const [quantity, setQuantity] = useState(1);
@@ -31,7 +29,7 @@ const Products = (props) => {
   React.useEffect(() => {
     if (token) {
       axios
-        .get('/products')
+        .get('/products/visible')
         .then((response) => {
           setProducts(response.data.products);
           setLoading(false);
@@ -89,16 +87,6 @@ const Products = (props) => {
         <Spinner />
       ) : (
         <div className={classes.Container}>
-          <div className='text-center'>
-            <Button
-              color='success'
-              className='btn-round'
-              onClick={() => setModal(true)}
-            >
-              Add Product
-            </Button>
-            <NewProduct modal={modal} setModal={setModal} />
-          </div>
           <Row className={classes.Row}>
             {products.map((product) => (
               <Col

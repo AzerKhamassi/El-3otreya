@@ -31,14 +31,16 @@ const upload = multer({
   // fileFilter: fileFilter,
 });
 
-router.post( 
+router.post(
   '/',
-  checkAuth,  
+  checkAuth,
   // upload.single('productImage'),
   productsController.createProduct
-); 
+);
 
-router.get('/',  productsController.getAllProducts);
+router.get('/', productsController.getAllProducts);
+
+router.get('/visible', productsController.getVisibleProducts);
 
 router.get('/:productId', productsController.getProduct);
 
