@@ -6,7 +6,7 @@ const userSchema = mongoose.Schema({
   password: { type: String, required: true },
   // totalExpenses: { type: Number, default: 0 },
   isAdmin: { type: Boolean, required: true },
-  // products: [{ type: mongoose.Schema.Types.ObjectId, ref: 'product' }],
+  products: [{ type: mongoose.Schema.Types.ObjectId, ref: 'product' }],
 
   // orders : [{type: String, ref: 'order'}]
 });

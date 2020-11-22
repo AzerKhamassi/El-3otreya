@@ -65,13 +65,21 @@ exports.deleteUser = async (req, res) => {
 };
 
 exports.getCurrentUser = async (req, res) => {
-  const user = await User.findById(req.user.userId).select('-password');
+  const user = await User.findById(req.user.userId)
+    .populate({
+      path: 'products',
+      model: 'Product',
+    })
+    .select('-password');
   res.status(200).json({ user: user });
 };
 
 exports.getUser = async (req, res) => {
   try {
-    const user = await User.findById(req.params.userId);
+    const user = await User.findById(req.params.userId).populate({
+      path: 'products',
+      model: 'Product',
+    });
     if (!user) {
       res.status(404).send('The user with the given ID is not found');
     } else {

@@ -118,7 +118,7 @@ const LoginPage = (props) => {
                       onClick={loginHandler}
                       size='lg'
                     >
-                      Connexion
+                      Log in
                     </Button>
                     <hr />
                     <Button
@@ -127,7 +127,7 @@ const LoginPage = (props) => {
                       onClick={() => props.history.push('/register')}
                       size='sm'
                     >
-                      Créer Un Compte
+                      Create New Account
                     </Button>
                   </CardFooter>
                 </Form>

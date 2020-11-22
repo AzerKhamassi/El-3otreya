@@ -15,6 +15,7 @@ const AppContextProvider = (props) => {
   const [darkMode, setDarkMode] = useState(
     localStorage.getItem('darkMode') === 'false'
   );
+  const [loading, setLoading] = React.useState(true);
 
   React.useEffect(() => {});
   React.useEffect(() => {
@@ -39,6 +40,7 @@ const AppContextProvider = (props) => {
         })
         .then((respoonse) => {
           setUser(respoonse.data.user);
+          setLoading(false);
         });
     }
   }, [token]);
@@ -131,6 +133,7 @@ const AppContextProvider = (props) => {
         darkMode,
         toggleDarkMode,
         setUser,
+        loading,
       }}
     >
       {props.children}

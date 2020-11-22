@@ -103,7 +103,6 @@ const Profile = (props) => {
             </React.Fragment>
           ) : (
             <React.Fragment>
-              {' '}
               <Container className={classes.Container}>
                 <div className={'photo-container ' + classes.Photo}>
                   <img alt='...' src={require('assets/img/ryan.jpg')}></img>
@@ -314,7 +313,7 @@ const Profile = (props) => {
                       className='btn-round'
                       onClick={() => setModal(true)}
                     >
-                      Mdofier mot de passe
+                      Edit Password
                     </Button>
                   </React.Fragment>
                 )}
@@ -324,18 +323,21 @@ const Profile = (props) => {
                   className='content'
                   style={{ color: darkMode ? 'black' : 'white' }}
                 >
-                  <div className='social-description'>
-                    <h2>26</h2>
-                    <p>Comments</p>
-                  </div>
-                  <div className='social-description'>
+                  {userProfile?.isAdmin && (
+                    <div className='social-description'>
+                      <h2>{userProfile?.products?.length}</h2>
+                      <p>Products</p>
+                    </div>
+                  )}
+
+                  {/* <div className='social-description'>
                     <h2>26</h2>
                     <p>Comments</p>
                   </div>
                   <div className='social-description'>
                     <h2>48</h2>
                     <p>Bookmarks</p>
-                  </div>
+                  </div> */}
                 </div>
               </Container>
             </React.Fragment>

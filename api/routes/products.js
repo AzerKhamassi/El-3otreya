@@ -40,6 +40,8 @@ router.post(
 
 router.get('/', productsController.getAllProducts);
 
+router.get('/byuser', checkAuth, productsController.getUserProducts);
+
 router.get('/visible', productsController.getVisibleProducts);
 
 router.get('/:productId', productsController.getProduct);

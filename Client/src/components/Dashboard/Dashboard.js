@@ -31,7 +31,7 @@ const Dashboard = (props) => {
             activeClassName={classes.ActiveLink}
             style={{ color: darkMode ? 'black' : 'white' }}
           >
-            <i className='fa fa-home fa-2x m-1'></i>
+            <i className='fa fa-home fa-2x mx-1'></i>
             <p className='text-center m-0'>Home</p>
           </NavLink>
           <NavLink
@@ -40,7 +40,7 @@ const Dashboard = (props) => {
             activeClassName={classes.ActiveLink}
             style={{ color: darkMode ? 'black' : 'white' }}
           >
-            <i className='fa fa-shopping-basket fa-2x m-1'></i>
+            <i className='fa fa-list-ul fa-2x mx-1'></i>
             <p className='text-center m-0'>Products</p>
           </NavLink>
         </div>

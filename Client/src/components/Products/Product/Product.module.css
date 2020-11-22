@@ -1,18 +1,91 @@
 .Card {
   border: 1px solid rgba(211, 211, 211, 0.466) !important;
-  border-radius: 12px !important;
+  /* border: none !important; */
+  /* border-radius: 12px !important; */
   box-shadow: 0px 1px 5px rgba(214, 214, 214, 0.753) !important;
-
-  transition: transform 0.3s;
+  /* box-shadow: none !important; */
+  transition: transform 0.1s linear;
   /* width: 250px !important; */
 }
 
 .Card:hover {
   box-shadow: 0px 5px 5px rgba(207, 207, 207, 0.384);
-  cursor: pointer;
-  transform: scale(1.05);
+  /* cursor: pointer; */
+  /* transform: scale(1.05); */
 }
 
 .Btn {
   background-color: rgba(185, 185, 185, 0.479);
+}
+
+.Image {
+  background-image: url('../../../assets/img/pepsi.jpg');
+  position: relative;
+  /* background-image: url('../../../assets/img/ryan.jpg'); */
+  background-position: center;
+  width: 100%;
+  height: 320px;
+  background-size: cover;
+  opacity: 1;
+  /* transform: scale(1.1); */
+  transition: transform 0.5s, opacity 0.5s;
+}
+
+.ProductImg {
+  opacity: 0.8;
+  /* width: 95%; */
+  height: auto;
+  /* transform: scale(1.15); */
+  transition: transform 0.5s, opacity 0.5s;
+}
+
+.ProductImg:hover {
+  opacity: 1;
+  /* transform: scale(1.03); */
+}
+
+.Photo {
+  position: relative;
+}
+.Photo:before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0);
+}
+.Photo:hover .Image {
+  filter: blur(2px);
+  opacity: 0.85;
+  transform: scale(0.99);
+
+  /* background-color: rgba(0, 0, 0, 0.5); */
+}
+
+.Photo i {
+  position: absolute;
+  top: 40%;
+  left: 38%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  display: none;
+  transition: all 0.5 linear;
+}
+.Photo:hover i {
+  display: block;
+}
+.BasketBtn {
+  /* background-color: rgb(177, 177, 177) !important; */
+  cursor: pointer;
+  color: white;
+  opacity: 0.7;
+  display: flex;
+  transform: scale(2) !important;
+  /* box-shadow: none !important; */
+}
+.BasketBtn:hover {
+  color: bisque;
 }

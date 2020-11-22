@@ -1,7 +1,6 @@
 .Dashboard {
   padding: 68px 0 0 0;
   display: flex;
-  /* padding: 10px 0; */
   justify-content: center;
   margin-bottom: 15px;
 }
@@ -10,7 +9,7 @@
   border-bottom: 2px solid rgb(151, 151, 151);
   width: 310px;
   display: flex;
-  /* padding: 10px 0; */
+  /* flex-direction: column; */
   justify-content: center;
 }
 
@@ -20,10 +19,8 @@
 }
 .Item {
   display: flex;
-  align-items: center;
   margin: 0 15px;
   padding: 10px 20px;
-  /* color: rgb(77, 52, 216) !important; */
   transition: all 0.1s ease-in;
 }
 .Item:hover {

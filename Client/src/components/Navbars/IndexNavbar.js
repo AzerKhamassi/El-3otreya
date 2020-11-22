@@ -26,6 +26,7 @@ const IndexNavbar = () => {
     token,
     darkMode,
     toggleDarkMode,
+    loading,
   } = React.useContext(AppContext);
   const [collapseOpen, setCollapseOpen] = React.useState(false);
 
@@ -38,8 +39,8 @@ const IndexNavbar = () => {
         color={darkMode ? 'white' : 'default'}
         style={{
           boxShadow: darkMode
-            ? 'inset rgba(255, 255, 255, 0.1) 0px 2px 0px, inset rgba(255, 255, 255, 0.04) 0px 0px 0px 2px, rgba(0, 0, 0, 0.25) 0px 2px 10px'
-            : 'inset rgba(0, 0, 0, 0.1) 0px 2px 0px, inset rgba(0, 0, 0, 0.04) 0px 0px 0px 2px, rgba(255, 255, 255, 0.25) 0px 2px 10px',
+            ? 'inset rgba(255, 255, 255, 0.1) 0px 1px 0px, inset rgba(255, 255, 255, 0.04) 0px 0px 0px 1px, rgba(0, 0, 0, 0.25) 0px 1px 3px'
+            : 'inset rgba(0, 0, 0, 0.1) 0px 1px 0px, inset rgba(0, 0, 0, 0.04) 0px 0px 0px 1px, rgba(255, 255, 255, 0.25) 0px 1px 3px',
         }}
       >
         <Container className={classes.Container}>
@@ -100,24 +101,26 @@ const IndexNavbar = () => {
                     onClick={(e) => e.preventDefault()}
                   >
                     <i className='now-ui-icons users_single-02 mr-1'></i>
-                    <p className='text-center pl-2'>{user?.name}</p>
+                    <p className='text-center pl-2'>
+                      {loading ? 'loading' : user?.name}
+                    </p>
                   </DropdownToggle>
                   <DropdownMenu
                     style={{
                       backgroundColor: darkMode ? 'white' : 'black',
-                      // height: '180px',
+                      height: '180px',
                       overflowY: 'hidden',
                     }}
                   >
                     <DropdownItem
-                      to={`/profile/${user._id}`}
+                      to={`/profile/${user?._id}`}
                       tag={Link}
                       style={{
                         color: darkMode ? 'black' : 'white',
                       }}
                     >
-                      <i className='now-ui-icons ui-1_settings-gear-63 pr-2'></i>
-                      Settings
+                      <i className='now-ui-icons users_circle-08 pr-2'></i>
+                      See your profile
                     </DropdownItem>
                     {user?.isAdmin && (
                       <DropdownItem
@@ -167,7 +170,7 @@ const IndexNavbar = () => {
               <React.Fragment>
                 <NavItem>
                   <NavLink tag={Link} to='/login' style={{ cursor: 'pointer' }}>
-                    <p>Connexion</p>
+                    <p>Log in</p>
                   </NavLink>
                 </NavItem>
                 <NavItem>
@@ -176,7 +179,7 @@ const IndexNavbar = () => {
                     to='/register'
                     style={{ cursor: 'pointer' }}
                   >
-                    <p>Créer un compte</p>
+                    <p>Create New Account</p>
                   </NavLink>
                 </NavItem>
               </React.Fragment>

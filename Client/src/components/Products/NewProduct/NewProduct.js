@@ -33,7 +33,8 @@ const NewProduct = (props) => {
       .then((response) => {
         setName('');
         setPrice('');
-        props.history.replace('/');
+        props.productAdded(true);
+        // props.history.push('/admin/products');
       })
       .catch((error) => {
         console.log(error);

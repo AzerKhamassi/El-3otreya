@@ -8,6 +8,10 @@ exports.createProduct = async (req, res) => {
       user: req.user.userId,
       // productImage: req.file.path,
     });
+    await User.findOneAndUpdate(
+      { _id: req.user.userId },
+      { $push: { products: product } }
+    );
     product = await product.save();
     res.status(201).json({ createdProduct: product });
   } catch (error) {
@@ -28,6 +32,16 @@ exports.getAllProducts = async (req, res) => {
 exports.getVisibleProducts = async (req, res) => {
   try {
     const products = await Product.find({ visibility: true })
+      .populate('user', '-__v -password')
+      .select('-__v');
+    res.status(200).json({ products: products });
+  } catch (error) {
+    res.status(500).json({ error: error });
+  }
+};
+exports.getUserProducts = async (req, res) => {
+  try {
+    const products = await Product.find({ user: req.user.userId })
       .populate('user', '-__v -password')
       .select('-__v');
     res.status(200).json({ products: products });

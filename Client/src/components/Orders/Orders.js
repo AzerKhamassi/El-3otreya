@@ -65,7 +65,7 @@ const Orders = (props) => {
                 </thead>
                 <tbody>
                   {orders.map((order, index) => (
-                    <tr key={order._id}>
+                    <tr key={order._id} className={classes.TableRow}>
                       <td className='text-center'>
                         <p className='mt-1' style={{ fontWeight: 'bold' }}>
                           {index + 1}

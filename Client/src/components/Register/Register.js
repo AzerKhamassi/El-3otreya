@@ -155,7 +155,7 @@ const Register = (props) => {
                     onClick={submitHandler}
                     size='lg'
                   >
-                    S’inscrire
+                    Register
                   </Button>
                   <hr />
                   <Button
@@ -164,7 +164,7 @@ const Register = (props) => {
                     onClick={(e) => props.history.push('/login')}
                     size='sm'
                   >
-                    Se Connecter
+                    Log in
                   </Button>
                 </CardFooter>
               </Form>
