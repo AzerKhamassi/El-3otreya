@@ -3,7 +3,7 @@ const app = express();
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-
+const path = require('path');
 const productRoutes = require('./api/routes/products');
 const orderRoutes = require('./api/routes/orders');
 const userRoutes = require('./api/routes/users');
@@ -53,6 +53,9 @@ app.use((error, req, res, next) => {
 
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static('Client/build'));
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'Client/build/index.html'));
+  });
 }
 
 module.exports = app;
