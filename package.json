@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "concurrently -n \" npm run build\" \" npm run server",
-    "build": "cd Client && npm run build", 
-    "server" : "npm start"
+    "start": "concurrently -n \" npm run build\" \" npm run server\"",
+    "build": "cd Client && npm install && npm run build", 
+    "server" : "node server.js"
    },
   "keywords": [],
   "author": "",
