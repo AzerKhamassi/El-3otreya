@@ -9,12 +9,11 @@ const orderRoutes = require('./api/routes/orders');
 const userRoutes = require('./api/routes/users');
 
 mongoose
-  .connect(
-    'mongodb+srv://azer:' +
-      process.env.MONGO_ATLAS_PW +
-      '@cluster0.bc3e7.mongodb.net/node-shop?retryWrites=true&w=majority',
-    { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false }
-  )
+  .connect(process.env.MONGO_ATLAS, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useFindAndModify: false,
+  })
   .then(() => {
     console.log('Connected to DataBase');
   })
