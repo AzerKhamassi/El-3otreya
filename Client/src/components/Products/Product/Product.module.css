@@ -72,7 +72,7 @@
   transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
   display: none;
-  transition: all 0.5 linear;
+  transition: display 0.5 linear;
 }
 .Photo:hover i {
   display: block;

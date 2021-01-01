@@ -1,5 +1,6 @@
 import React, { createContext, useState } from 'react';
 import axios from '../axios';
+
 export const AppContext = createContext();
 
 const AppContextProvider = (props) => {
@@ -17,7 +18,6 @@ const AppContextProvider = (props) => {
   );
   const [loading, setLoading] = React.useState(true);
 
-  React.useEffect(() => {});
   React.useEffect(() => {
     let itemsCount = 0;
     let totalPrice = 0;
@@ -44,6 +44,7 @@ const AppContextProvider = (props) => {
         });
     }
   }, [token]);
+
   React.useEffect(() => {
     if (!darkMode) {
       document.getElementById('root').style.backgroundColor = 'rgb(28, 30, 33)';
@@ -51,6 +52,7 @@ const AppContextProvider = (props) => {
       document.getElementById('root').style.backgroundColor = 'white';
     }
   }, [darkMode]);
+
   const addProduct = (product) => {
     const productIndex = purchasedProducts.findIndex(
       (p) => p._id === product._id
@@ -73,6 +75,7 @@ const AppContextProvider = (props) => {
     });
     localStorage.setItem('products', JSON.stringify(purchasedProducts));
   };
+
   const deleteProduct = (product) => {
     const updatedProducts = purchasedProducts;
     const productIndex = purchasedProducts.findIndex(

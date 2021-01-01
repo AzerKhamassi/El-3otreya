@@ -16,7 +16,7 @@ import Logout from 'components/Logout/Logout';
 import Orders from 'components/Orders/Orders';
 import Dashboard from 'components/Dashboard/Dashboard';
 
-const App = (props) => {
+const App = () => {
   return (
     <React.Fragment>
       <AppContextProvider>

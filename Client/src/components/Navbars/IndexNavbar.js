@@ -29,8 +29,23 @@ const IndexNavbar = () => {
     loading,
   } = React.useContext(AppContext);
   const [collapseOpen, setCollapseOpen] = React.useState(false);
-
-  React.useEffect(() => {});
+  const [collapseDropdown, setCollapseDropdown] = React.useState(false);
+  const [screenWidth, setScreenWidth] = React.useState(window.innerWidth);
+  React.useEffect(() => {
+    window.addEventListener('resize', () => {
+      setScreenWidth(window.innerWidth);
+      if (window.innerWidth > 768) {
+        setCollapseDropdown(false);
+        setCollapseOpen(false);
+      }
+    });
+  }, []);
+  const togglerHandler = () => {
+    setCollapseOpen(!collapseOpen);
+    if (!collapseOpen) {
+      setCollapseDropdown(false);
+    }
+  };
   return (
     <>
       <Navbar
@@ -45,7 +60,12 @@ const IndexNavbar = () => {
       >
         <Container className={classes.Container}>
           <div className='navbar-translate'>
-            <NavbarBrand tag={Link} to='/' style={{ cursor: 'pointer' }}>
+            <NavbarBrand
+              onClick={() => setCollapseOpen(false)}
+              tag={Link}
+              to='/'
+              style={{ cursor: 'pointer' }}
+            >
               <img
                 src='https://img.icons8.com/nolan/64/e-commerce.png'
                 alt='...'
@@ -53,19 +73,18 @@ const IndexNavbar = () => {
               />
               El 3oTreya
             </NavbarBrand>
-            <button
-              className='navbar-toggler navbar-toggler '
-              onClick={() => {
-                // document.documentElement.classList.toggle('nav-open');
-                setCollapseOpen(!collapseOpen);
-              }}
-              aria-expanded={collapseOpen}
-              type='button'
-            >
-              <span className='navbar-toggler-bar top-bar'></span>
-              <span className='navbar-toggler-bar middle-bar'></span>
-              <span className='navbar-toggler-bar bottom-bar'></span>
-            </button>
+            {token && (
+              <button
+                className='navbar-toggler navbar-toggler '
+                onClick={() => togglerHandler()}
+                aria-expanded={collapseOpen}
+                type='button'
+              >
+                <span className='navbar-toggler-bar top-bar'></span>
+                <span className='navbar-toggler-bar middle-bar'></span>
+                <span className='navbar-toggler-bar bottom-bar'></span>
+              </button>
+            )}
           </div>
 
           <Nav
@@ -73,48 +92,73 @@ const IndexNavbar = () => {
             className={
               collapseOpen ? classes.NavbarActive : classes.NavbarCollapsed
             }
+            style={
+              screenWidth < 768
+                ? {
+                    height: collapseDropdown
+                      ? user?.isAdmin
+                        ? '290px'
+                        : '260px'
+                      : '130px',
+                    overflow: 'hidden',
+                  }
+                : null
+            }
           >
             {token ? (
               <React.Fragment>
-                <NavItem>
+                <NavItem
+                  className='text-center'
+                  onClick={() => setCollapseOpen(false)}
+                >
                   <NavLink tag={Link} to='/basket'>
                     <i className='now-ui-icons shopping_cart-simple'></i>
                     <p className={'text-center ' + classes.P}>{itemsCount}</p>
                     <span>{totalPrice.toPrecision(3)} TND</span>
                   </NavLink>
                 </NavItem>
-                <NavItem>
+                <NavItem
+                  className='text-center '
+                  onClick={() => setCollapseOpen(false)}
+                >
                   <NavLink
                     tag={Link}
                     style={{ cursor: 'pointer' }}
                     to='/orders'
                   >
-                    <i className='now-ui-icons shopping_box'></i>
-                    <p className=' pl-3 text-center'>Orders</p>
+                    <i className='now-ui-icons shopping_box mr-1'></i>
+                    <p className='text-center'>Orders</p>
                   </NavLink>
                 </NavItem>
                 <UncontrolledDropdown nav>
                   <DropdownToggle
                     caret
+                    className='text-center px-0 pl-2'
                     color='default'
                     nav
-                    onClick={(e) => e.preventDefault()}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setCollapseDropdown(
+                        (prevCollapseDropdown) => !prevCollapseDropdown
+                      );
+                    }}
                   >
                     <i className='now-ui-icons users_single-02 mr-1'></i>
-                    <p className='text-center pl-2'>
+                    <p className='text-center '>
                       {loading ? 'loading' : user?.name}
                     </p>
                   </DropdownToggle>
                   <DropdownMenu
                     style={{
                       backgroundColor: darkMode ? 'white' : 'black',
-                      height: '180px',
                       overflowY: 'hidden',
+                      height: screenWidth < 768 ? '280px' : '180px',
                     }}
                   >
                     <DropdownItem
                       to={`/profile/${user?._id}`}
                       tag={Link}
+                      onClick={() => setCollapseOpen(false)}
                       style={{
                         color: darkMode ? 'black' : 'white',
                       }}
@@ -126,6 +170,7 @@ const IndexNavbar = () => {
                       <DropdownItem
                         to='/admin'
                         tag={Link}
+                        onClick={() => setCollapseOpen(false)}
                         style={{
                           color: darkMode ? 'black' : 'white',
                         }}
@@ -136,9 +181,12 @@ const IndexNavbar = () => {
                     )}
 
                     <DropdownItem
-                      onClick={toggleDarkMode}
                       style={{
                         color: darkMode ? 'black' : 'white',
+                      }}
+                      onClick={() => {
+                        setCollapseOpen(false);
+                        toggleDarkMode();
                       }}
                     >
                       {!darkMode ? (
@@ -156,6 +204,7 @@ const IndexNavbar = () => {
                     <DropdownItem
                       to='/logout'
                       tag={Link}
+                      onClick={() => setCollapseOpen(false)}
                       style={{
                         color: darkMode ? 'black' : 'white',
                       }}
@@ -167,22 +216,7 @@ const IndexNavbar = () => {
                 </UncontrolledDropdown>
               </React.Fragment>
             ) : (
-              <React.Fragment>
-                <NavItem>
-                  <NavLink tag={Link} to='/login' style={{ cursor: 'pointer' }}>
-                    <p>Log in</p>
-                  </NavLink>
-                </NavItem>
-                <NavItem>
-                  <NavLink
-                    tag={Link}
-                    to='/register'
-                    style={{ cursor: 'pointer' }}
-                  >
-                    <p>Create New Account</p>
-                  </NavLink>
-                </NavItem>
-              </React.Fragment>
+              <React.Fragment></React.Fragment>
             )}
           </Nav>
         </Container>

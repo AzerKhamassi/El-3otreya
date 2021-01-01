@@ -12,7 +12,10 @@
 }
 @media only screen and (max-width: 990px) {
   .NavbarCollapsed {
-    display: none !important;
+    height: 0 !important;
+    margin: 0 !important;
+    transition: all 0.3s ease-in;
+    display: block !important;
   }
   .Container {
     display: flex;
@@ -21,10 +24,11 @@
     align-items: center;
   }
   .NavbarActive {
-    padding-top: 8px;
+    padding-top: 5px;
     display: flex;
+    height: 270px;
+    transition: all 0.3s ease-in;
     flex-direction: column;
-
     margin: 0 !important;
   }
 }

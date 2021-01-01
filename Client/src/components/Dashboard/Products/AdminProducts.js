@@ -97,7 +97,6 @@ const AdminProducts = (props) => {
     axios
       .patch(
         '/products/' + product._id,
-
         [
           {
             propName: 'visibility',

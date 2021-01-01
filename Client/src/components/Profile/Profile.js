@@ -45,7 +45,7 @@ const Profile = (props) => {
           setLoading(false);
         })
         .catch((error) => {
-          if (error.response.status === 404) {
+          if (error.response.status === 404 || error.response.status === 500) {
             props.history.replace('/');
           }
         });
@@ -80,7 +80,7 @@ const Profile = (props) => {
     axios
       .patch(
         '/users/' + props.match.params.userId,
-        [{ propName: 'name', value: name }],
+        [{ propName: 'email', value: email }],
         {
           headers: { Authorization: `Bearer ${token}` },
         }
@@ -118,10 +118,12 @@ const Profile = (props) => {
                 >
                   {userProfile?.name}
                 </h3>
-                <p className='category'>Photographer </p>
+                <p className='category'>
+                  {user.isAdmin ? 'Seller' : 'Customer'}{' '}
+                </p>
                 {user._id === userId && (
                   <React.Fragment>
-                    <Col style={{ width: '500px' }} className={classes.Col}>
+                    <Col className={classes.Col}>
                       {editName ? (
                         <Row className='mx-1'>
                           <Col
@@ -191,19 +193,29 @@ const Profile = (props) => {
                         </Row>
                       ) : (
                         <Row className={classes.Row}>
-                          <Col
-                            className='pt-2'
-                            xs='10'
-                            style={{
-                              display: 'flex',
-                              justifyContent: 'center',
-                            }}
-                          >
-                            <h6 style={{ color: darkMode ? 'black' : 'white' }}>
-                              Name: {user.name}
-                            </h6>
-                          </Col>
                           <Col xs='2'>
+                            <p
+                              style={{
+                                color: darkMode ? 'black' : 'white',
+                                fontSize: '14px',
+                                fontWeight: 'bold',
+                                margin: '0',
+                              }}
+                            >
+                              Name
+                            </p>
+                          </Col>
+                          <Col className='text-center' xs='8'>
+                            <p
+                              className={classes.Data}
+                              style={{
+                                color: darkMode ? 'black' : 'white',
+                              }}
+                            >
+                              {user.name}
+                            </p>
+                          </Col>
+                          <Col className='p-0' xs='2'>
                             <Button
                               className='btn-round'
                               color='info'
@@ -284,19 +296,29 @@ const Profile = (props) => {
                         </Row>
                       ) : (
                         <Row className={classes.Row}>
-                          <Col
-                            className='pt-2'
-                            xs='10'
-                            style={{
-                              display: 'flex',
-                              justifyContent: 'center',
-                            }}
-                          >
-                            <h6 style={{ color: darkMode ? 'black' : 'white' }}>
-                              Email: {user.email}
-                            </h6>
-                          </Col>
                           <Col xs='2'>
+                            <p
+                              style={{
+                                color: darkMode ? 'black' : 'white',
+                                fontSize: '14px',
+                                fontWeight: 'bold',
+                                margin: '0',
+                              }}
+                            >
+                              Email
+                            </p>
+                          </Col>
+                          <Col className='text-center' xs='8'>
+                            <p
+                              className={classes.Data}
+                              style={{
+                                color: darkMode ? 'black' : 'white',
+                              }}
+                            >
+                              {user.email}
+                            </p>
+                          </Col>
+                          <Col className='p-0' xs='2'>
                             <Button
                               className='btn-round'
                               color='info'
